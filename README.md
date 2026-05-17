@@ -1,6 +1,18 @@
-# Front Flutter
+# FRONT_FLUTTER
 
-Application Flutter pour le front mobile du réseau social.
+Application Flutter pour le front mobile d'un mini reseau social.
+
+## Theme
+
+Le projet est un mini reseau social mobile avec :
+
+- authentification
+- fil d'actualite
+- publications avec texte ou image
+- likes
+- profil utilisateur
+- invitations et suggestions d'amis
+- messagerie en temps reel avec Socket.IO
 
 ## Installation
 
