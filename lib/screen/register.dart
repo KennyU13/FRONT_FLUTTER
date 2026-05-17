@@ -1,6 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
-import 'dart:convert';
 import 'package:flutt_mobile/screen/newaccount.dart';
+import 'package:flutt_mobile/service/api_response.dart';
 import 'package:flutt_mobile/service/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutt_mobile/screen/home.dart';
@@ -28,7 +28,7 @@ class _Register extends State<Register>{
     });
     try {
       http.Response resp = await AuthService.login(email, password);
-      final Map reponse = jsonDecode(resp.body);
+      final reponse = ApiResponse.decodeObject(resp.body);
       if (!mounted) return;
       setState(() {
         _isLoading = false;
@@ -45,7 +45,7 @@ class _Register extends State<Register>{
       else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(reponse.values.isNotEmpty ? reponse.values.first.toString() : 'Erreur de connexion'),
+            content: Text(ApiResponse.messageFromMap(reponse)),
             duration: const Duration(seconds: 3),
             ),
         );  
@@ -124,4 +124,3 @@ class _Register extends State<Register>{
     );
   }
 }
-

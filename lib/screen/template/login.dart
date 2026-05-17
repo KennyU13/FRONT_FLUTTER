@@ -2,10 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutt_mobile/screen/template/register.dart';
 import 'package:flutt_mobile/service/auth_service.dart';
+import 'package:flutt_mobile/service/api_response.dart';
 import 'package:flutt_mobile/screen/home.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:convert';
 
 
 class Login extends StatefulWidget{
@@ -29,7 +29,7 @@ class _Login extends State<Login> {
     });
     try {
       http.Response resp = await AuthService.login(emailController.text, passwordController.text);
-      final Map reponse = jsonDecode(resp.body);
+      final reponse = ApiResponse.decodeObject(resp.body);
 
       if (!mounted) return;
       setState(() {
@@ -47,7 +47,7 @@ class _Login extends State<Login> {
       else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(reponse.values.isNotEmpty ? reponse.values.first.toString() : 'Erreur de connexion'),
+            content: Text(ApiResponse.messageFromMap(reponse)),
             duration: const Duration(seconds: 3),
             ),
         );  

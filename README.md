@@ -18,6 +18,13 @@ Le projet est un mini reseau social mobile avec :
 - invitations et suggestions d'amis
 - messagerie en temps reel avec Socket.IO
 
+## Ameliorations recentes
+
+- gestion centralisee des reponses API
+- messages d'erreur plus fiables pour la connexion et l'inscription
+- protection contre les reponses backend vides ou invalides
+- tests unitaires pour le parsing des reponses API
+
 ## Installation
 
 ```bash
@@ -32,4 +39,10 @@ L'URL de l'API se trouve dans `lib/service/config.dart`.
 
 ```bash
 flutter run
+```
+
+## Tests
+
+```bash
+flutter test
 ```
